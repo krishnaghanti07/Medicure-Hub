@@ -47,9 +47,8 @@ React-thunk: Redux Thunk is a middleware for Redux that enables asynchronous act
 Axios: Axios is a popular JavaScript library used for making HTTP requests.
 styled-components: styled-components is a library for styling React components using tagged template literals. It allows developers to write CSS-in-JS.
 
-### Group Project
-Members Deepshikha-fw27_069 | Makarand Gijam-fw27_036 | Md Sabir Alam-fw25_201
+### Project
 
-GitHub link: https://github.com/Deep-06/MediCare
+GitHub link: https://github.com/krishnaghanti07/Medicure-Hub
 
 Vercel link: https://medi-care-jet.vercel.app/
