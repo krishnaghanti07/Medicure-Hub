@@ -63,8 +63,8 @@ export default function Footer() {
                     <Box margin={auto}>
                         <Image src="/Images/MediCare Logo.png" alt="Medicare" width={"80px"} borderRadius="md"/>
                     </Box>
-                    <Text fontSize={'lg'}>268, Elizabeth Road, Broklyn</Text>
-                    <Text fontSize={'lg'}>USA</Text>
+                    <Text fontSize={'lg'}>721146, Daspur-I, Ghatal, Midnapore</Text>
+                    <Text fontSize={'lg'}>West Bengal</Text>
                     <Text fontSize={'lg'}>© 2024 @MediCare. All rights reserved</Text>
 
                     <Flex gap={5}>
@@ -100,7 +100,7 @@ export default function Footer() {
 
                 <Box>
                     <ListHeader>Contact Us</ListHeader>
-                    <Box>+2819 (4613) 2930</Box>
+                    <Box>+91 (90939) 69068</Box>
                     <Box>support@medicare.com</Box>
                 </Box>
 

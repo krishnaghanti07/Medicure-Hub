@@ -19,8 +19,10 @@ const initialState = {
   date: "",
   time: "",
 };
+
 function Book() {
   const [form, setForm] = useState(initialState);
+  const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handlechange = (e) => {
@@ -31,10 +33,38 @@ function Book() {
     });
   };
 
+  // Validate all fields
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!form.firstname) newErrors.firstname = "First name is required";
+    if (!form.lastname) newErrors.lastname = "Last name is required";
+    if (!form.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      newErrors.email = "Email is invalid";
+    }
+    if (!form.gender) newErrors.gender = "Gender is required";
+    if (!form.date) newErrors.date = "Appointment date is required";
+    if (!form.time) newErrors.time = "Appointment time is required";
+
+    setErrors(newErrors);
+
+    // Return true if no errors
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+
+    // Validate the form before submitting
+    if (validateForm()) {
+      setIsSubmitted(true);
+    } else {
+      setIsSubmitted(false);
+    }
   };
+
   return (
     <VStack bgColor={"#00525D"} p={5} border={"2px solid white"}>
       <VStack mt={10}>
@@ -55,9 +85,6 @@ function Book() {
                 src="/Images/MediCare.png"
                 alt="doctor"
               />
-              <VStack spacing={0}>
-                {/* <Text fontSize='2xl' color="black" >MediCare</Text> */}
-              </VStack>
             </VStack>
           </Container>
 
@@ -72,8 +99,11 @@ function Book() {
                     value={form.firstname}
                     onChange={handlechange}
                   />
-                  <br />
-                  <br />
+                  {errors.firstname && (
+                    <Text color="red">{errors.firstname}</Text>
+                  )}
+                  <br /><br />
+
                   <Input
                     type="text"
                     placeholder="Last name"
@@ -81,8 +111,11 @@ function Book() {
                     value={form.lastname}
                     onChange={handlechange}
                   />
-                  <br />
-                  <br />
+                  {errors.lastname && (
+                    <Text color="red">{errors.lastname}</Text>
+                  )}
+                  <br /><br />
+
                   <Input
                     type="email"
                     placeholder="Email"
@@ -90,15 +123,17 @@ function Book() {
                     value={form.email}
                     onChange={handlechange}
                   />
-                  <br />
-                  <br />
+                  {errors.email && <Text color="red">{errors.email}</Text>}
+                  <br /><br />
+
                   <label>Date of Birth</label>
+                  <br />
                   <Input type="date" placeholder="Date of Birth" />
-                  <br />
-                  <br />
+                  <br /><br />
+
                   <Input type="number" placeholder="Mobile Number" />
-                  <br />
-                  <br />
+                  <br /><br />
+
                   <Select
                     placeholder="Gender"
                     name="gender"
@@ -109,9 +144,11 @@ function Book() {
                     <option value="Male">Male</option>
                     <option value="Others">Others</option>
                   </Select>
-                  <br />
-                  <br />
+                  {errors.gender && <Text color="red">{errors.gender}</Text>}
+                  <br /><br />
+
                   <label>Appointment Date</label>
+                  <br />
                   <Input
                     type="date"
                     placeholder="Appointment Date"
@@ -119,9 +156,11 @@ function Book() {
                     value={form.date}
                     onChange={handlechange}
                   />
-                  <br />
-                  <br />
+                  {errors.date && <Text color="red">{errors.date}</Text>}
+                  <br /><br />
+
                   <label>Appointment Time</label>
+                  <br />
                   <Input
                     type="time"
                     placeholder="Appointment Time"
@@ -129,8 +168,9 @@ function Book() {
                     value={form.time}
                     onChange={handlechange}
                   />
-                  <br />
-                  <br />
+                  {errors.time && <Text color="red">{errors.time}</Text>}
+                  <br /><br />
+
                   <Input
                     type="submit"
                     name="Submit"
@@ -141,6 +181,7 @@ function Book() {
                 </FormControl>
               </form>
             </Container>
+
             {isSubmitted && (
               <Container
                 bgColor={"white"}
